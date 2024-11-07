@@ -36,35 +36,67 @@ void move::settype(const string& t) {
         this->type = t;
     }
 
-void move::setdamage(int d) {
-        this->damage = d;
-    }
+// void move::setdamage(int d) {
+//         this->damage = d;
+//     }
 
-void move::setnumuses(int u) {
-        this->num_uses = u;
+// void move::setnumuses(int u) {
+//         this->num_uses = u;
+//     }
+void move::use_move() {
+    if (num_uses > 0) {
+        num_uses--;
+    } else {
+        cout << "No remaining moves!" << endl;
     }
+}
+// string move::getname() const {
+//         return this->name;
+//     }
 
-string move::getname() const {
-        return this->name;
-    }
-
-string move::gettype() const {
-        return this->type;
-    }
+// string move::gettype() const {
+//         return this->type;
+//     }
 
 int move::getdamage() const {
         return this->damage;
     }
 
-int move::getnumuses() const {
+int move::get_remaining_numuses() const {
         return this->num_uses;
     }
 
+double move::type_interaction(string& oppokemon) const {
+    if (this->type == "fire") {
+        if (oppokemon == "grass") {
+            // advantage
+            return 2.0;
+        } else if (oppokemon == "water" || oppokemon == "fire") {
+            return 0.5; //disadvatnage
+        }
+    } 
+    else if (this->type == "water") {
+        if (oppokemon == "fire") {
+            return 2.0;
+        } else if (oppokemon == "grass" || oppokemon == "water") {
+            return 0.5;
+        }
+    }
+    else if (this->type == "grass") {
+        if (oppokemon == "water") {
+            return 2.0;
+        } else if (oppokemon == "fire" || oppokemon == "grass") {
+            return 0.5;
+        }
+    }
+    return 1.0;
+}
 // change the  num of uses they have for that move 
 
 void move::display_moves() {
    cout << this->name << " (" << this->num_uses << " uses remaining)" << endl;
 }
+
 
 // default 
 // move::move() : name(" "), type(" "), damage(0), num_uses(0) {
