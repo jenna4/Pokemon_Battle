@@ -11,6 +11,21 @@
 // this->move_arr = new move [size];
 // }
 
+move scratch("Scratch", "normal", 3, 10000);
+move ember("Ember", "fire", 5, 3);
+move watergun("Water gun", "water", 5, 3);
+move vinewhip("Vine whip", "grass", 5, 3);
+
+void set_move(int indexmovearr, move m) {
+    // create pokemon object and 
+    // if (indexmovearr >=0 && indexmovearr < num_moves) {
+    // this->move_arr[index] = m;
+    // }
+
+    // ex charmander.set_move(0, scratch);
+    //    charmander.set_move(1, ember);
+}
+
 pokemon::pokemon (string& name, string& type, Stats& stats, string& move_type, int damage, int uses) {
     this->name = name;
     this->type = type;
