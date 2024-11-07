@@ -30,12 +30,14 @@ public:
 
 		void set_name(const string& n);
 		void settype(const string& t);
-		void setdamage(int d);
-		void setnumuses(int u);
-		string getname() const;
-		string gettype() const;
+		void move::use_move();
+		// void setdamage(int d);
+		// void setnumuses(int u);
+		// string getname() const;
+		// string gettype() const;
 		int getdamage() const;
-		int getnumuses() const;
+		int move::get_remaining_numuses() const;
+		double move::type_interaction(string& oppokemon) const;
 		void display_moves();
 };
 
