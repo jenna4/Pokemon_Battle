@@ -50,6 +50,8 @@ void move::use_move() {
         cout << "No remaining moves!" << endl;
     }
 }
+
+
 // string move::getname() const {
 //         return this->name;
 //     }
@@ -85,9 +87,14 @@ double move::type_interaction(string& oppokemon) const {
     else if (this->type == "grass") {
         if (oppokemon == "water") {
             return 2.0;
-        } else if (oppokemon == "fire" || oppokemon == "grass") {
+        } else if (oppokemon == "fire" || oppokemon == "grass" || oppokemon == "flying") {
             return 0.5;
         }
+    }
+    else if (this->type == "flying") {
+        if (oppokemon == "grass") {
+            return 2.0;
+        } 
     }
     return 1.0;
 }
