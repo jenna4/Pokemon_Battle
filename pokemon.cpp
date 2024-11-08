@@ -11,20 +11,6 @@
 // this->move_arr = new move [size];
 // }
 
-move scratch("Scratch", "normal", 3, 10000);
-move ember("Ember", "fire", 5, 3);
-move watergun("Water gun", "water", 5, 3);
-move vinewhip("Vine whip", "grass", 5, 3);
-
-void set_move(int indexmovearr, move m) {
-    // create pokemon object and 
-    // if (indexmovearr >=0 && indexmovearr < num_moves) {
-    // this->move_arr[index] = m;
-    // }
-
-    // ex charmander.set_move(0, scratch);
-    //    charmander.set_move(1, ember);
-}
 
 pokemon::pokemon (string& name, string& type, Stats& stats, string& move_type, int damage, int uses) {
     this->name = name;
@@ -36,6 +22,21 @@ pokemon::pokemon (string& name, string& type, Stats& stats, string& move_type, i
     this->move_arr = new move[num_moves];
 }
 
+move scratch("Scratch", "normal", 3, 10000);
+move ember("Ember", "fire", 5, 3);
+move watergun("Water gun", "water", 5, 3);
+move vinewhip("Vine whip", "grass", 5, 3);
+move wingattack("Wing attack", "flying", 5, 3);
+
+void pokemon::set_move(int indexmovearr, move& m) {
+    if (indexmovearr >=0 && indexmovearr < num_moves) {
+    this->move_arr[indexmovearr] = m;
+    }
+
+    // create pokemon object in battle??
+    // ex charmander.set_move(0, scratch);
+    //    charmander.set_move(1, ember);
+}
 pokemon::~pokemon() {
     delete[] move_arr;
     move_arr = nullptr;
@@ -54,9 +55,10 @@ string pokemon::prompt_move() {
     for (int i = 0; i < this->num_moves; i++) {
         this->move_arr[i].display_moves();
     }
+    return move_choice;
 }
 
-
+// assignment thing from lab
 pokemon& pokemon::operator=(const pokemon &other) {
     if (this != &other) {
         delete[] move_arr;
@@ -69,6 +71,7 @@ pokemon& pokemon::operator=(const pokemon &other) {
     return *this;
 }
 
+//copy thing from lab
 pokemon::pokemon(const pokemon &other) {
     num_moves = other.num_moves;
 

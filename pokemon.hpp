@@ -30,6 +30,7 @@ class pokemon {
 
 	public: 
 	pokemon(string& name, string& type, Stats& stats, string& move_type, int damage, int uses);
+	void set_move(int indexmovearr, move& m);
 	~pokemon(); 
 	pokemon& operator=(const pokemon &other); 
 	pokemon(const pokemon &other);
