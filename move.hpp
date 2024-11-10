@@ -30,6 +30,7 @@ public:
 
 		void set_name(const string& n);
 		void settype(const string& t);
+		void create_move(string name, string type, int dmg, int uses);
 		void use_move();
 		// void setdamage(int d);
 		// void setnumuses(int u);

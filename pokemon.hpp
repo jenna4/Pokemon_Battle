@@ -29,16 +29,19 @@ class pokemon {
 	int num_moves;
 
 	public: 
+	pokemon();
 	pokemon (const string& name, const string& type, Stats& stats, const int num_moves);
 	void set_move(int indexmovearr, move& m);
-	pokemon create_charmander();
-	pokemon create_squirtle();
-	pokemon create_bulbasaur();
-	pokemon create_pidgey();
+	void create_charmander();
+	void create_squirtle();
+	void create_bulbasaur();
+	void create_pidgey();
 	int get_hp();
+	string get_name();
 	void heal();
 	bool died() const;
 	~pokemon(); 
+	int get_attack();
 	pokemon& operator=(const pokemon &other); 
 	pokemon(const pokemon &other);
 	int prompt_move_heal();

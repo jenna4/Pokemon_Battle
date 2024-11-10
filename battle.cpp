@@ -15,10 +15,55 @@ int prompt_move_heal() {
 //     cout << "Which move would you like to use?";
 // }
 
+battle::battle() {
+	this->pokemon1 = nullptr;
+	this->pokemon2 = nullptr;
+	this->turn = 1;
+}
+
 battle::battle(pokemon* p1, pokemon* p2) {
 	this->pokemon1 = p1;
 	this->pokemon2 = p2;
 	this->turn = 1;
+}
+
+battle::~battle() {
+    delete pokemon1;
+    delete pokemon2;
+    pokemon1 = nullptr;
+    pokemon2 = nullptr;
+}
+void battle::set_up_pokemon(int choice1, int choice2) {
+
+    this->pokemon1 = new pokemon();
+    if (choice1 == 1) {
+        pokemon1->create_charmander();
+    } else if (choice1 == 2) {
+        pokemon1->create_squirtle();
+    } else if (choice1 == 3){
+        pokemon1->create_bulbasaur();
+    } else if (choice1 == 4) {
+        pokemon1->create_pidgey();
+    }
+
+    this->pokemon2 = new pokemon();
+    if (choice2 == 1) {
+        pokemon2->create_charmander();
+    } else if (choice2 == 2) {
+        pokemon2->create_squirtle();
+    } else if (choice2 == 3){
+        pokemon2->create_bulbasaur();
+    } else if (choice2 == 4) {
+        pokemon2->create_pidgey();
+    }
+
+    cout << pokemon1->get_name() << " | " << pokemon2->get_name() << endl;
+
+}
+
+void battle::display_status() const {
+    cout << pokemon1->get_name() << " HP: " << pokemon1->get_hp() << endl;
+    cout << pokemon1->get_name() << " HP: " << pokemon1->get_hp() << endl;
 }
 
 bool battle::done_battle() const {
@@ -28,7 +73,8 @@ bool battle::done_battle() const {
 // void battle::switch_turns(pokemon* attacker, pokemon* defender) {
 //     int choice = attacker->prompt_move_heal();
 //     if (choice == 1) { //attack
-//         string move_name = attacker->prompt_move(); //pause
+//         string move_name = attacker->prompt_move(); 
+//         attacker->
 //     }
 // }
 

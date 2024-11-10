@@ -14,10 +14,14 @@ private:
 	pokemon* pokemon2;
 	int turn;
 
-// public:
+public:
 	//constructor 
+	battle();
 	battle(pokemon* p1, pokemon* p2);
-	//start battle function 
+	~battle();
+	//start battle function
+	void display_status() const; 
+	void set_up_pokemon(int choice1, int choice2);
 	void start_battle();
 	bool done_battle() const;
 	void switch_turns(pokemon* attacker, pokemon* defender);

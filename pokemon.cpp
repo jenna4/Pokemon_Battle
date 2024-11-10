@@ -11,7 +11,13 @@
 // this->move_arr = new move [size];
 // }
 
-
+pokemon::pokemon() {
+    this->name = " ";
+    this->type = " ";
+    this->hp = 0;
+    this->num_moves = 0;
+    this->move_arr = nullptr;
+}
 pokemon::pokemon (const string& name, const string& type, Stats& stats, const int num_moves) {
     this->name = name;
     this->type = type;
@@ -22,46 +28,59 @@ pokemon::pokemon (const string& name, const string& type, Stats& stats, const in
     this->move_arr = new move[num_moves];
 }
 
-move scratch("Scratch", "normal", 3, 10000);
-move ember("Ember", "fire", 5, 3);
-move watergun("Water gun", "water", 5, 3);
-move vinewhip("Vine whip", "grass", 5, 3);
-move wingattack("Wing attack", "flying", 5, 3);
+// move* scratch = new move("Scratch", "normal", 3, 10000);
+// move* ember = new move("Ember", "fire", 5, 3);
+// move* watergun = new move("Water gun", "water", 5, 3);
+// move* vinewhip = new move("Vine whip", "grass", 5, 3);
+// move* wingattack = new move("Wing attack", "flying", 5, 3);
 
-pokemon create_charmander() {
-    Stats charmander_stats = {6, 4, 18};
-    pokemon charmander("Charmander", "fire", charmander_stats, 2);
+void pokemon::create_charmander() {
+    this->name = "Charmander";
+    this->type = "fire";
+    this->stats = {6, 4, 18};
+    this->hp = 18;
+    this->num_moves = 2;
+    this->move_arr = new move[this->num_moves];
 
-    charmander.set_move(0, scratch);
-    charmander.set_move(1, ember);
-    return charmander;
+    this->move_arr[0].create_move("Scratch", "normal", 3, 10000);
+    this->move_arr[1].create_move("Ember", "fire", 5, 3);
 }
 
-pokemon create_squirtle() {
-    Stats squirtle_stats = {4, 6, 22};
-    pokemon squirtle("Squirtle", "water", squirtle_stats, 2);
+void pokemon::create_squirtle() {
+    this->name = "Squirtle";
+    this->type = "water";
+    this->stats = {4, 6, 22};
+    this->hp = 22;
+    this->num_moves = 2;
+    this->move_arr = new move[this->num_moves];
 
-    squirtle.set_move(0, scratch);
-    squirtle.set_move(1, watergun);
-    return squirtle;
+    this->move_arr[0].create_move("Scratch", "normal", 3, 10000);
+    this->move_arr[1].create_move("Water gun", "water", 5, 3);
+
 }
 
-pokemon create_bulbasaur() {
-    Stats bulbasaur_stats = {5, 5, 20};
-    pokemon bulbasaur("Bulbasaur", "grass", bulbasaur_stats, 2);
+void pokemon::create_bulbasaur() {
+    this->name = "Bulbasaur";
+    this->type = "grass";
+    this->stats = {5, 5, 20};
+    this->hp = 20;
+    this->num_moves = 2;
+    this->move_arr = new move[this->num_moves];
 
-    bulbasaur.set_move(0, scratch);
-    bulbasaur.set_move(1, vinewhip);
-    return bulbasaur;
+    this->move_arr[0].create_move("Scratch", "normal", 3, 10000);
+    this->move_arr[1].create_move("Vine whip", "grass", 5, 3);
 }
 
-pokemon create_pidgey() {
-    Stats pidgey_stats = {4, 4, 18};
-    pokemon pidgey("Pidgey", "flying", pidgey_stats, 2);
+void pokemon::create_pidgey() {
+    this->name = "Pidgey";
+    this->type = "normal";
+    this->stats = {4, 4, 18};
+    this->hp = 18;
+    this->num_moves = 2;
+    this->move_arr = new move[this->num_moves];
 
-    pidgey.set_move(0, scratch);
-    pidgey.set_move(1, wingattack);
-    return pidgey;
+    this->move_arr[0].create_move("Scratch", "normal", 3, 10000);
+    this->move_arr[1].create_move("Wing attack", "flying", 5, 3);
 }
 
 void pokemon::set_move(int indexmovearr, move& m) {
@@ -74,8 +93,15 @@ void pokemon::set_move(int indexmovearr, move& m) {
     //    charmander.set_move(1, ember);
 }
 pokemon::~pokemon() {
-    delete[] move_arr;
-    move_arr = nullptr;
+    if (move_arr != nullptr) {
+        delete[] move_arr;
+        move_arr = nullptr;
+    }
+    
+}
+
+int pokemon::get_attack() {
+    return this->stats.attack;
 }
 
 //should be in battle i think
@@ -102,6 +128,10 @@ void pokemon::d_move() {
 
 int pokemon::get_hp() {
    return hp;
+}
+
+string pokemon::get_name() {
+    return name;
 }
 
 void pokemon::heal() {

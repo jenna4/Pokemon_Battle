@@ -43,6 +43,14 @@ void move::settype(const string& t) {
 // void move::setnumuses(int u) {
 //         this->num_uses = u;
 //     }
+
+void move::create_move(string name, string type, int dmg, int uses) {
+    this->name = name;
+    this->type = type;
+    this->damage = dmg;
+    this->num_uses = uses;
+}
+
 void move::use_move() {
     if (num_uses > 0) {
         num_uses--;
