@@ -104,7 +104,6 @@ void move::display_moves() {
    cout << this->name << " (" << this->num_uses << " uses remaining)" << endl;
 }
 
-
 // default 
 // move::move() : name(" "), type(" "), damage(0), num_uses(0) {
 //     cout << "Move()" << endl;
