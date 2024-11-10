@@ -25,6 +25,7 @@ public:
 	void start_battle();
 	bool done_battle() const;
 	void switch_turns(pokemon* attacker, pokemon* defender);
+	int test_dmove();
 	//{display stats}
 	//if(turn=1) {
 	// calc damaage set turn = 2}

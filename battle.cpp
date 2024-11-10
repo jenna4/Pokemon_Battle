@@ -62,8 +62,8 @@ void battle::set_up_pokemon(int choice1, int choice2) {
 }
 
 void battle::display_status() const {
-    cout << pokemon1->get_name() << " HP: " << pokemon1->get_hp() << endl;
-    cout << pokemon1->get_name() << " HP: " << pokemon1->get_hp() << endl;
+    cout << pokemon1->get_name() << " HP: " << pokemon1->get_hp() << " / " << pokemon1->get_starthp() << endl;
+    cout << pokemon2->get_name() << " HP: " << pokemon2->get_hp() << " / " << pokemon2->get_starthp() << endl;
 }
 
 bool battle::done_battle() const {
@@ -78,12 +78,22 @@ bool battle::done_battle() const {
 //     }
 // }
 
+int battle::test_dmove() {
+    int movep1 = pokemon1->prompt_move();
+    return movep1;
+}
+
 void battle::start_battle() {
     while (!done_battle()) {
         // disdplay status func
+        display_status();
         if (turn == 1) {
             cout << "Trainer 1's turn!" << endl;
             // heal n promt for move function
+            int action = pokemon1->prompt_move_heal();
+            if (action == 1) {
+                int movep1 = pokemon1->prompt_move();
+            }
             turn = 2; 
         } else {
             cout << "Trainer 2's turn!" << endl;

@@ -38,6 +38,7 @@ class pokemon {
 	void create_pidgey();
 	int get_hp();
 	string get_name();
+	int get_starthp();
 	void heal();
 	bool died() const;
 	~pokemon(); 

@@ -130,6 +130,10 @@ int pokemon::get_hp() {
    return hp;
 }
 
+int pokemon::get_starthp() {
+    return stats.starting_hp;
+}
+
 string pokemon::get_name() {
     return name;
 }
