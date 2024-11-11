@@ -18,10 +18,10 @@ int main() {
 		trainer_1_pokemon_choice
 	);
 
-	battle* b = new battle();
+	battle b;
 
-	b->set_up_pokemon(trainer_1_pokemon_choice, trainer_2_pokemon_choice);
-	b->start_battle();
+	b.set_up_pokemon(trainer_1_pokemon_choice, trainer_2_pokemon_choice);
+	b.start_battle();
 
 	// TODO Use if statements to determine which pokemon was chosen by
 	// each player and create respective pokemon objects with the
@@ -29,7 +29,5 @@ int main() {
 
 	// TODO Create a battle object containing the two pokemon objects
 	// created above, and then start the battle
-	delete b;
-	b = nullptr;
 
 }
