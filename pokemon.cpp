@@ -87,7 +87,6 @@ void pokemon::set_move(int indexmovearr, move& m) {
     if (indexmovearr >=0 && indexmovearr < num_moves) {
     this->move_arr[indexmovearr] = m;
     }
-
     // create pokemon object in battle??
     // ex charmander.set_move(0, scratch);
     //    charmander.set_move(1, ember);
@@ -104,6 +103,9 @@ int pokemon::get_attack() {
     return this->stats.attack;
 }
 
+int pokemon::get_defense() {
+    return this->stats.defense;
+}
 //should be in battle i think
 int pokemon::prompt_move_heal() {
     int mhchoice;
@@ -126,6 +128,10 @@ void pokemon::d_move() {
     }
 }
 
+move& pokemon::get_move(int index) {
+    return move_arr[index];
+}
+
 int pokemon::get_hp() {
    return hp;
 }
@@ -136,6 +142,20 @@ int pokemon::get_starthp() {
 
 string pokemon::get_name() {
     return name;
+}
+
+string pokemon::get_type() {
+    return type;
+}
+
+void pokemon::take_damage(int damage) {
+    //reduce hp by dmaga amt
+    this->hp -= damage;
+
+    // make sure hp dont go below 0
+    if (this->hp  < 0) {
+        this->hp = 0;
+    }
 }
 
 void pokemon::heal() {

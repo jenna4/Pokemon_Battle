@@ -38,6 +38,7 @@ public:
 		// string gettype() const;
 		int getdamage() const;
 		int get_remaining_numuses() const;
+		string gettype();
 		double type_interaction(string& oppokemon) const;
 		void display_moves();
 };

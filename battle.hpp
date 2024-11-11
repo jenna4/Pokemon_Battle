@@ -19,13 +19,14 @@ public:
 	battle();
 	battle(pokemon* p1, pokemon* p2);
 	~battle();
-	//start battle function
+	int calc_damage(pokemon* attack, pokemon* defend, int move_index);
 	void display_status() const; 
 	void set_up_pokemon(int choice1, int choice2);
+	void who_wins();
 	void start_battle();
 	bool done_battle() const;
 	void switch_turns(pokemon* attacker, pokemon* defender);
-	int test_dmove();
+	// int test_dmove();
 	//{display stats}
 	//if(turn=1) {
 	// calc damaage set turn = 2}

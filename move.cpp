@@ -76,6 +76,10 @@ int move::get_remaining_numuses() const {
         return this->num_uses;
     }
 
+string move::gettype() {
+    return this->type;
+}
+
 double move::type_interaction(string& oppokemon) const {
     if (this->type == "fire") {
         if (oppokemon == "grass") {
