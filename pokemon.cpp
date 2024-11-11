@@ -120,11 +120,13 @@ int pokemon::get_defense() {
 int pokemon::prompt_move_heal() {
     int mhchoice;
     do {
+    cout << endl;
     cout << "Would you like to 1) use a move, or 2) heal?: ";
     cin >> mhchoice;
 
     if (mhchoice < 1 || mhchoice > 2) {
         cout << "Invalid input, try again" << endl;
+        cout << endl;
     }
 
     } while (mhchoice < 1 || mhchoice > 2);
@@ -134,12 +136,16 @@ int pokemon::prompt_move_heal() {
 int pokemon::prompt_move() {
     int choice;
     do {
+    cout << endl;
     cout << "Which move would you like to use?" << endl;
     d_move();
+    cout << endl;
+    cout << "Your choice: ";
     cin >> choice;
 
     if (choice < 1 || choice > 2) {
         cout << "Invalid input, try again" << endl;
+        cout << endl;
     }
 
     } while (choice < 1 || choice > 2);
@@ -148,6 +154,7 @@ int pokemon::prompt_move() {
 
 void pokemon::d_move() {
     for (int i = 0; i < this->num_moves; i++) {
+        cout << (i + 1) << ". ";
         this->move_arr[i].display_moves();
     }
 }

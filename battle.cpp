@@ -59,8 +59,10 @@ void battle::set_up_pokemon(int choice1, int choice2) {
 }
 
 void battle::display_status() const {
+    cout << "----------------" << endl;
     cout << pokemon1->get_name() << " HP: " << pokemon1->get_hp() << " / " << pokemon1->get_starthp() << endl;
     cout << pokemon2->get_name() << " HP: " << pokemon2->get_hp() << " / " << pokemon2->get_starthp() << endl;
+    cout << "----------------" << endl;
 }
 
 bool battle::done_battle() const {
@@ -111,20 +113,27 @@ int battle::calc_damage(pokemon* attacker, pokemon* defender, int move_index) {
     double total_damage = (static_cast<double>(attack) / defense) * t_interaction * base_damage * rand_multi * rand_crit;
     // rounding up to int
     int final_damage = static_cast<int>(ceil(total_damage));
+    cout << endl;
+    cout << "Performing damage calculation..." << endl;
     cout << "Type Effectiveness: " << t_interaction << endl;
     cout << "Random Damage Multiplier: " << rand_multi << endl;
     cout << "Critcal Hit: " << rand_crit << endl;
     cout << "Total Damage: " << final_damage << endl;
+    cout << endl;
     return final_damage;
 }
 
 void battle::who_wins() {
     if (pokemon1->get_hp() > 0) {
+        cout << endl;
         cout << pokemon2->get_name() << " has fainted!" << endl;
         cout << pokemon1->get_name() << " wins the battle!" << endl;
+        cout << endl;
     } else if (pokemon2->get_hp() > 0) {
+        cout << endl;
         cout << pokemon1->get_name() << " has fainted!" << endl;
         cout << pokemon2->get_name() << " wins the battle!" << endl;
+        cout << endl;
     } else {
         cout << "It is a tie!" << endl;
     }
@@ -154,7 +163,9 @@ void battle::try_heal(pokemon* healer) {
         if (healer->has_heal()) {
             healer->heal();
             healer->use_heal();
+            cout << endl;
             cout << healer->get_name() << " used a heal potion!" << endl;
+            cout << endl;
             break;
         } else {
             cout << healer->get_name() << " has no heal potions left. Please choose a different option" << endl;
