@@ -31,11 +31,13 @@ public:
 		void set_name(const string& n);
 		void settype(const string& t);
 		void create_move(string name, string type, int dmg, int uses);
+		bool has_uses() const;
 		void use_move();
 		// void setdamage(int d);
 		// void setnumuses(int u);
 		// string getname() const;
 		// string gettype() const;
+		string get_name() const;
 		int getdamage() const;
 		int get_remaining_numuses() const;
 		string gettype();

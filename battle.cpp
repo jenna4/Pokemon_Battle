@@ -5,12 +5,6 @@
 #include <cstdlib>
 #include "battle.hpp"
 // prompt user for move
-int prompt_move_heal() {
-    int mhchoice;
-    cout << "Would you like to 1) use a move, or 2) heal?: ";
-    cin >> mhchoice;
-    return mhchoice;
-}
 
 // string prompt_move() {
 //     string move_choice;
@@ -35,6 +29,7 @@ battle::~battle() {
     pokemon1 = nullptr;
     pokemon2 = nullptr;
 }
+
 void battle::set_up_pokemon(int choice1, int choice2) {
 
     this->pokemon1 = new pokemon();
@@ -125,11 +120,54 @@ int battle::calc_damage(pokemon* attacker, pokemon* defender, int move_index) {
 
 void battle::who_wins() {
     if (pokemon1->get_hp() > 0) {
+        cout << pokemon2->get_name() << " has fainted!" << endl;
         cout << pokemon1->get_name() << " wins the battle!" << endl;
     } else if (pokemon2->get_hp() > 0) {
+        cout << pokemon1->get_name() << " has fainted!" << endl;
         cout << pokemon2->get_name() << " wins the battle!" << endl;
     } else {
         cout << "It is a tie!" << endl;
+    }
+}
+
+void battle::perform_attack(pokemon* attacker, pokemon* defender) {
+    int move_index;
+
+    while (true) {
+        // subtracting 1 to match zero-based index
+        move_index = attacker->prompt_move() - 1;
+
+        // check if selected move has remianinng uses
+        if (attacker->get_move(move_index).has_uses()){
+            int damage = calc_damage(attacker, defender, move_index);
+            attacker->get_move(move_index).use_move();
+            defender->take_damage(damage);
+            break;
+        } else {
+            cout << "No remaining uses for " << attacker->get_move(move_index).get_name() << endl;
+        }
+    }
+}
+
+void battle::try_heal(pokemon* healer) {
+    while (true) {
+        if (healer->has_heal()) {
+            healer->heal();
+            healer->use_heal();
+            cout << healer->get_name() << " used a heal potion!" << endl;
+            break;
+        } else {
+            cout << healer->get_name() << " has no heal potions left. Please choose a different option" << endl;
+            int action = healer->prompt_move_heal();
+            if (action == 1) {
+                if (turn == 1) {
+                    perform_attack(pokemon1, pokemon2);
+                } else {
+                    perform_attack(pokemon2, pokemon1); 
+                }
+                break; //exit loop after perfomring attack
+            }
+        }
     }
 }
 
@@ -142,16 +180,9 @@ void battle::start_battle() {
             // heal n promt for move function
             int action = pokemon1->prompt_move_heal();
             if (action == 1) {
-                // subtracting 1 to match zero-based index
-                int move_index = pokemon1->prompt_move() - 1;
-                int damage = calc_damage(pokemon1, pokemon2, move_index);
-                pokemon2->take_damage(damage);
-                // // gets the move at position move index, then gets value for the move
-                // int damage = pokemon1->get_move(move_index).getdamage();
-                // // holds the type of pokemon1
-                // string def_type = pokemon1->get_type();
+                perform_attack(pokemon1, pokemon2);
             } else {
-                pokemon1->heal();
+                try_heal(pokemon1);
             }
             turn = 2; 
         } else {
@@ -159,11 +190,12 @@ void battle::start_battle() {
             int action = pokemon2->prompt_move_heal();
 
             if (action == 1) {
-                int move_index = pokemon2->prompt_move() - 1;
-                int damage = calc_damage(pokemon2, pokemon1, move_index);
-                pokemon1->take_damage(damage);
+                perform_attack(pokemon2, pokemon1);
+                // int move_index = pokemon2->prompt_move() - 1;
+                // int damage = calc_damage(pokemon2, pokemon1, move_index);
+                // pokemon1->take_damage(damage);
             } else {
-                pokemon2->heal();
+                try_heal(pokemon2);
             }
             turn = 1; 
         }

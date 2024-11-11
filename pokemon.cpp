@@ -15,6 +15,7 @@ pokemon::pokemon() {
     this->name = " ";
     this->type = " ";
     this->hp = 0;
+    this->heal_remain = 1;
     this->num_moves = 0;
     this->move_arr = nullptr;
 }
@@ -23,6 +24,7 @@ pokemon::pokemon (const string& name, const string& type, Stats& stats, const in
     this->type = type;
     this->stats = stats;
     this->hp = stats.starting_hp;
+    this->heal_remain = 1;
     this->num_moves = num_moves;
 
     this->move_arr = new move[num_moves];
@@ -99,6 +101,14 @@ pokemon::~pokemon() {
     
 }
 
+bool pokemon::has_heal() const {
+    return heal_remain > 0;
+}
+
+void pokemon::use_heal() {
+    heal_remain--;
+}
+
 int pokemon::get_attack() {
     return this->stats.attack;
 }
@@ -109,16 +119,30 @@ int pokemon::get_defense() {
 //should be in battle i think
 int pokemon::prompt_move_heal() {
     int mhchoice;
+    do {
     cout << "Would you like to 1) use a move, or 2) heal?: ";
     cin >> mhchoice;
+
+    if (mhchoice < 1 || mhchoice > 2) {
+        cout << "Invalid input, try again" << endl;
+    }
+
+    } while (mhchoice < 1 || mhchoice > 2);
     return mhchoice;
 }
 
 int pokemon::prompt_move() {
+    int choice;
+    do {
     cout << "Which move would you like to use?" << endl;
     d_move();
-    int choice;
     cin >> choice;
+
+    if (choice < 1 || choice > 2) {
+        cout << "Invalid input, try again" << endl;
+    }
+
+    } while (choice < 1 || choice > 2);
     return choice;
 }
 

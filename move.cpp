@@ -51,11 +51,15 @@ void move::create_move(string name, string type, int dmg, int uses) {
     this->num_uses = uses;
 }
 
+bool move::has_uses() const {
+    return num_uses > 0;
+}
+
 void move::use_move() {
     if (num_uses > 0) {
         num_uses--;
     } else {
-        cout << "No remaining moves!" << endl;
+        cout << "No remaining moves for " << name << "!" << endl;
     }
 }
 
@@ -67,6 +71,10 @@ void move::use_move() {
 // string move::gettype() const {
 //         return this->type;
 //     }
+
+string move::get_name() const {
+    return this->name;
+}
 
 int move::getdamage() const {
         return this->damage;

@@ -25,6 +25,7 @@ class pokemon {
 	string type;
 	Stats stats;
 	int hp;
+	int heal_remain;
 	move* move_arr; 
 	int num_moves;
 
@@ -45,6 +46,8 @@ class pokemon {
 	void heal();
 	bool died() const;
 	~pokemon(); 
+	bool has_heal() const;
+	void use_heal();
 	int get_attack();
 	int get_defense();
 	pokemon& operator=(const pokemon &other); 

@@ -23,6 +23,8 @@ public:
 	void display_status() const; 
 	void set_up_pokemon(int choice1, int choice2);
 	void who_wins();
+	void try_heal(pokemon* healer);
+	void perform_attack(pokemon* attacker, pokemon* defender);
 	void start_battle();
 	bool done_battle() const;
 	void switch_turns(pokemon* attacker, pokemon* defender);
