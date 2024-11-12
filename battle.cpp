@@ -202,9 +202,6 @@ void battle::start_battle() {
 
             if (action == 1) {
                 perform_attack(pokemon2, pokemon1);
-                // int move_index = pokemon2->prompt_move() - 1;
-                // int damage = calc_damage(pokemon2, pokemon1, move_index);
-                // pokemon1->take_damage(damage);
             } else {
                 try_heal(pokemon2);
             }
@@ -216,11 +213,4 @@ void battle::start_battle() {
 }
 
 
-// way to calculate damage done by move 
-
-// apply damage to opps pokemon
-
-// if damage is greater than hp 
-
-// healing potion 
 

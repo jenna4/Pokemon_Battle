@@ -15,32 +15,106 @@ private:
 	int turn;
 
 public:
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	//constructor 
 	battle();
+
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	battle(pokemon* p1, pokemon* p2);
+
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	~battle();
+
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	int calc_damage(pokemon* attack, pokemon* defend, int move_index);
+
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	void display_status() const; 
+
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	void set_up_pokemon(int choice1, int choice2);
+
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	void who_wins();
+
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	void try_heal(pokemon* healer);
+
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	void perform_attack(pokemon* attacker, pokemon* defender);
+
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	void start_battle();
+
+	/*********************************************************************
+	** Function:
+	** Description:
+	** Parameters:
+	** Pre-Conditions:
+	** Post-Conditions:
+	*********************************************************************/ 
 	bool done_battle() const;
-	void switch_turns(pokemon* attacker, pokemon* defender);
-	// int test_dmove();
-	//{display stats}
-	//if(turn=1) {
-	// calc damaage set turn = 2}
-	// else if (turn = 2) {
-	// calc damage set tunr =2}    // switches players turns 
-	// until get winner 
 
-	// calc damage function
-	//display stats
-	// declar winmner func
-
-	// where would heal go? moves??
 };
 
 #endif

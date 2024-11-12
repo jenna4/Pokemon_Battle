@@ -5,12 +5,6 @@
 #include <fstream>
 #include <cmath>
 
-
-// pokemon::pokemon (int size) {
-// this->num_moves = size;
-// this->move_arr = new move [size];
-// }
-
 pokemon::pokemon() {
     this->name = " ";
     this->type = " ";
@@ -29,12 +23,6 @@ pokemon::pokemon (const string& name, const string& type, Stats& stats, const in
 
     this->move_arr = new move[num_moves];
 }
-
-// move* scratch = new move("Scratch", "normal", 3, 10000);
-// move* ember = new move("Ember", "fire", 5, 3);
-// move* watergun = new move("Water gun", "water", 5, 3);
-// move* vinewhip = new move("Vine whip", "grass", 5, 3);
-// move* wingattack = new move("Wing attack", "flying", 5, 3);
 
 void pokemon::create_charmander() {
     this->name = "Charmander";
@@ -202,25 +190,48 @@ bool pokemon::died() const {
 
 // assignment thing from lab
 pokemon& pokemon::operator=(const pokemon &other) {
-    if (this != &other) {
-        delete[] move_arr;
-        num_moves = other.num_moves;
-        move_arr = new move[num_moves];
-        for (int i = 0; i < num_moves; i++) {
-            move_arr[i] = other.move_arr[i];
-        }
+    if (this == &other) {
+        return *this;
     }
+
+    if (this->move_arr != nullptr) {
+        delete[] this->move_arr;
+        this->move_arr = nullptr;
+    }
+
+    this->name = other.name;
+    this->hp = other.hp;
+    this->stats = other.stats;
+    this->heal_remain = other.heal_remain;
+
+    this->num_moves = other.num_moves;
+    if (this->num_moves > 0) {
+        this->move_arr = new move[this->num_moves];
+        for (int i = 0; i < this->num_moves; ++i) {
+            this->move_arr[i] = other.move_arr[i]; 
+        }
+    } else {
+        this->move_arr = nullptr; 
+    }
+
     return *this;
 }
 
 //copy thing from lab
 pokemon::pokemon(const pokemon &other) {
-    num_moves = other.num_moves;
+    this->name = other.name;
+    this->hp = other.hp;
+    this->stats = other.stats;
+    this->heal_remain = other.heal_remain;
 
-    move_arr = new move[num_moves];
-
-    for (int i = 0; i < num_moves; i++) {
-        move_arr[i] = other.move_arr[i];
+    this->num_moves = other.num_moves;
+    if (this->num_moves > 0) {
+        this->move_arr = new move[this->num_moves];
+        for (int i = 0; i < this->num_moves; ++i) {
+            this->move_arr[i] = other.move_arr[i]; 
+        }
+    } else {
+        this->move_arr = nullptr; 
     }
     // pokemon p1;
 	// p1.prompt_move();
