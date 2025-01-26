@@ -1,25 +1,23 @@
-// TODO Implement member functions of the battle class
 #include <iostream>
 #include <string> 
 #include <cmath>
 #include <cstdlib>
 #include "battle.hpp"
-// prompt user for move
 
-// string prompt_move() {
-//     string move_choice;
-//     cout << "Which move would you like to use?";
-// }
 
 battle::battle() {
 	this->pokemon1 = nullptr;
 	this->pokemon2 = nullptr;
+    this->pokemon1_backup = nullptr;
+    this->pokemon2_backup = nullptr;
 	this->turn = 1;
 }
 
-battle::battle(pokemon* p1, pokemon* p2) {
+battle::battle(pokemon* p1, pokemon* p2, pokemon* p1_backup, pokemon* p2_backup) {
 	this->pokemon1 = p1;
 	this->pokemon2 = p2;
+    this->pokemon1_backup = p1_backup;
+    this->pokemon2_backup = p2_backup;
 	this->turn = 1;
 }
 
@@ -30,7 +28,7 @@ battle::~battle() {
     pokemon2 = nullptr;
 }
 
-void battle::set_up_pokemon(int choice1, int choice2) {
+void battle::set_up_pokemon(int choice1, int choice2, int choice3, int choice4) {
 
     this->pokemon1 = new pokemon();
     if (choice1 == 1) {
@@ -54,7 +52,29 @@ void battle::set_up_pokemon(int choice1, int choice2) {
         pokemon2->create_pidgey();
     }
 
-    cout << pokemon1->get_name() << " | " << pokemon2->get_name() << endl;
+    this->pokemon1_backup = new pokemon();
+    if (choice3 == 1) {
+        pokemon1_backup->create_charmander();
+    } else if (choice3 == 2) {
+        pokemon1_backup->create_squirtle();
+    } else if (choice3 == 3){
+        pokemon1_backup->create_bulbasaur();
+    } else if (choice3 == 4) {
+        pokemon1_backup->create_pidgey();
+    }
+
+    this->pokemon2_backup = new pokemon();
+    if (choice4 == 1) {
+        pokemon2_backup->create_charmander();
+    } else if (choice4 == 2) {
+        pokemon2_backup->create_squirtle();
+    } else if (choice4 == 3){
+        pokemon2_backup->create_bulbasaur();
+    } else if (choice4 == 4) {
+        pokemon2_backup->create_pidgey();
+    }
+
+    cout << pokemon1->get_name() << " & " << pokemon1_backup->get_name() << " | " << pokemon2->get_name() << " & " << pokemon2_backup->get_name() << endl;
 
 }
 
@@ -66,21 +86,18 @@ void battle::display_status() const {
 }
 
 bool battle::done_battle() const {
-    return pokemon1->get_hp() <= 0 || pokemon2->get_hp() <= 0;
+    return (pokemon1->died() && pokemon1_backup->died()) || (pokemon2->died() && pokemon2_backup->died());
 }
 
-// void battle::switch_turns(pokemon* attacker, pokemon* defender) {
-//     int choice = attacker->prompt_move_heal();
-//     if (choice == 1) { //attack
-//         string move_name = attacker->prompt_move(); 
-//         attacker->
-//     }
-// }
-
-// int battle::test_dmove() {
-//     int movep1 = pokemon1->prompt_move();
-//     return movep1;
-// }
+void battle::switch_pokemon(pokemon*& current, pokemon* backup) {
+    if (current->died() && backup->get_hp() > 0) {
+        cout << "-------------------------------" << endl;
+        cout << current->get_name() << " has fainted" << endl;
+        current = backup;
+        cout << current->get_name() << " has been swapped in!" << endl;
+        cout << "-------------------------------" << endl;
+    }
+}
 
 // calculations
 double random_multiplier() {
@@ -195,6 +212,7 @@ void battle::start_battle() {
             } else {
                 try_heal(pokemon1);
             }
+            switch_pokemon(pokemon2, pokemon2_backup);
             turn = 2; 
         } else {
             cout << "Trainer 2's turn!" << endl;
@@ -205,6 +223,7 @@ void battle::start_battle() {
             } else {
                 try_heal(pokemon2);
             }
+            switch_pokemon(pokemon1, pokemon1_backup);
             turn = 1; 
         }
     }

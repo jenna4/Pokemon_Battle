@@ -1,3 +1,12 @@
+/******************************************************
+** Program: main.cpp
+** Author: Jenna Rivera
+** Date: 11/11/2024
+** Description: implement a simplified version of a single pokemon battle where each
+** trainer has a single pokemon.
+** Input: pokemon for trainer 1, pokemon for trainer 2, move or heal, what move
+** Output: take turns till one of the pokemons reach 0 hp
+******************************************************/
 #include <iostream>
 #include <string> 
 #include <fstream>
@@ -18,16 +27,11 @@ int main() {
 		trainer_1_pokemon_choice
 	);
 
+	int t1_backup = prompt_pokemon1_backup(trainer_1_pokemon_choice, trainer_1_pokemon_choice);
+	int t2_backup = prompt_pokemon2_backup(trainer_2_pokemon_choice, trainer_1_pokemon_choice, t1_backup);
+
 	battle b;
 
-	b.set_up_pokemon(trainer_1_pokemon_choice, trainer_2_pokemon_choice);
+	b.set_up_pokemon(trainer_1_pokemon_choice, trainer_2_pokemon_choice, t1_backup, t2_backup);
 	b.start_battle();
-
-	// TODO Use if statements to determine which pokemon was chosen by
-	// each player and create respective pokemon objects with the
-	// appropriate types, stats, and moves
-
-	// TODO Create a battle object containing the two pokemon objects
-	// created above, and then start the battle
-
 }

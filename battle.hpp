@@ -11,7 +11,9 @@ class battle {
 
 private:
 	pokemon* pokemon1;
+	pokemon* pokemon1_backup;
 	pokemon* pokemon2;
+	pokemon* pokemon2_backup;
 	int turn;
 
 public:
@@ -32,7 +34,7 @@ public:
 	** Pre-Conditions: two pointers must exist
 	** Post-Conditions: a battle object is created with p1 and p2 
 	*********************************************************************/ 
-	battle(pokemon* p1, pokemon* p2);
+	battle(pokemon* p1, pokemon* p2, pokemon* p1_backup, pokemon* p2_backup);
 
 	/*********************************************************************
 	** Function: ~battle()
@@ -42,6 +44,8 @@ public:
 	** Post-Conditions: frees memory allocated for pokemon objects
 	*********************************************************************/ 
 	~battle();
+
+	void switch_pokemon(pokemon*& current, pokemon* backup);
 
 	/*********************************************************************
 	** Function: int calc_damage(pokemon* attack, pokemon* defend, int move_index)
@@ -68,7 +72,7 @@ public:
 	** Pre-Conditions: two ints must exist 
 	** Post-Conditions: allocates memory for pokemons and initializes them with specified pokemon
 	*********************************************************************/ 
-	void set_up_pokemon(int choice1, int choice2);
+	void set_up_pokemon(int choice1, int choice2, int choice3, int choice4);
 
 	/*********************************************************************
 	** Function: who_wins()

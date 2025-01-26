@@ -1,6 +1,8 @@
 #ifndef STARTUP_HPP
 #define STARTUP_HPP
 
+#include "battle.hpp"
+
 /*
  * Function: prompt_first_pokemon
  * Description: Prompts trainer 1 for their pokemon of choice. Loops until
@@ -10,6 +12,8 @@
  * 	3 if the trainer chooses Bulbasaur.
  */
 int prompt_first_pokemon();
+
+int prompt_pokemon1_backup(int poke1, int poke2);
 
 /*
  * Function: prompt_second_pokemon
@@ -28,5 +32,7 @@ int prompt_first_pokemon();
  * 	3 if the trainer chooses Bulbasaur.
  */
 int prompt_second_pokemon(int blacklisted_pokemon);
+
+int prompt_pokemon2_backup(int poke2, int poke1, int poke1_backup);
 
 #endif

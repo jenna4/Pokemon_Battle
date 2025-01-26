@@ -1,4 +1,3 @@
-// TODO Implement member functions of the pokemon class
 #include "pokemon.hpp"
 #include <iostream>
 #include <string> 
@@ -77,9 +76,6 @@ void pokemon::set_move(int indexmovearr, move& m) {
     if (indexmovearr >=0 && indexmovearr < num_moves) {
     this->move_arr[indexmovearr] = m;
     }
-    // create pokemon object in battle??
-    // ex charmander.set_move(0, scratch);
-    //    charmander.set_move(1, ember);
 }
 pokemon::~pokemon() {
     if (move_arr != nullptr) {
@@ -188,7 +184,6 @@ bool pokemon::died() const {
     return hp <= 0;
 }
 
-// assignment thing from lab
 pokemon& pokemon::operator=(const pokemon &other) {
     if (this == &other) {
         return *this;
@@ -217,7 +212,6 @@ pokemon& pokemon::operator=(const pokemon &other) {
     return *this;
 }
 
-//copy thing from lab
 pokemon::pokemon(const pokemon &other) {
     this->name = other.name;
     this->hp = other.hp;
@@ -233,6 +227,4 @@ pokemon::pokemon(const pokemon &other) {
     } else {
         this->move_arr = nullptr; 
     }
-    // pokemon p1;
-	// p1.prompt_move();
 }
